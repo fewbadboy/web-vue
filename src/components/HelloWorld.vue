@@ -7,6 +7,9 @@ const count = ref(0)
 </script>
 
 <template>
+  <div class="text-red-500 bg-blue-500">
+    Test
+  </div>
   <h1>{{ msg }}</h1>
 
   <div class="card">
