@@ -1,5 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { h, ref } from 'vue'
+import {
+  Space,
+  Button,
+  Popconfirm
+} from 'ant-design-vue'
+import {
+  SettingOutlined,
+  SettingFilled,
+  createFromIconfontCN
+} from '@ant-design/icons-vue';
+
+const IconFont = createFromIconfontCN({
+  // symbol 引用
+  // https://www.iconfont.cn/help/detail?helptype=code
+  scriptUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
+})
 
 defineProps<{ msg: string }>()
 
@@ -7,38 +23,25 @@ const count = ref(0)
 </script>
 
 <template>
-  <div class="text-red-500 bg-blue-500">
-    Test
+  
+  <Space class="bg-slate-300">
+    Space
+    <Button type="primary" loading>测试按钮</Button>
+    <Button danger ghost :icon="h(SettingOutlined)">Danger</Button>
+    <Popconfirm title="Are you sure delete this task?">
+      <Button type="dashed" :icon="h(SettingFilled)">Confirm</Button>
+    </Popconfirm>
+    <IconFont type="icon-twitter" class="red" />
+  </Space>
+
+  <div class="custom-card">
+    Tailwind css 自定义组件样式
   </div>
   <h1>{{ msg }}</h1>
-
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
-  </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Learn more about IDE Support for Vue in the
-    <a
-      href="https://vuejs.org/guide/scaling-up/tooling.html#ide-support"
-      target="_blank"
-      >Vue Docs Scaling up Guide</a
-    >.
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
-<style scoped>
-.read-the-docs {
-  color: #888;
+<style scoped lang="scss">
+:deep(.red) {
+  @apply text-red-600;
 }
 </style>

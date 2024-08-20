@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
+
+console.log(import.meta.env.VITE_APP_TITLE);
+
 </script>
 
 <template>

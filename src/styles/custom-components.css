@@ -1,5 +1,0 @@
-@layer components {
-  .svg-icon {
-    @apply fill-rose-500;
-  }
-}
