@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { h, ref } from 'vue'
+import { storeToRefs } from 'pinia'
 import {
   Space,
   Button,
@@ -17,9 +18,18 @@ const IconFont = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
 })
 
+import { useGlobalStore } from '@/stores/global'
+
+const globalStore = useGlobalStore()
+const { count, doubleCount } = storeToRefs(globalStore)
+const {increment } = globalStore
+
+
 defineProps<{ msg: string }>()
 
-const count = ref(0)
+const countNum = ref(0)
+console.log(countNum)
+
 </script>
 
 <template>
@@ -38,6 +48,8 @@ const count = ref(0)
     Tailwind css 自定义组件样式
   </div>
   <h1>{{ msg }}</h1>
+  <Button type="primary" @click="increment">+1</Button>
+  {{ count }} {{ doubleCount }}
 </template>
 
 <style scoped lang="scss">
