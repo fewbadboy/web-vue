@@ -12,10 +12,17 @@ import {
   createFromIconfontCN
 } from '@ant-design/icons-vue';
 
+import iconFont from './iconfont?raw'
+
 const IconFont = createFromIconfontCN({
-  // symbol 引用
-  // https://www.iconfont.cn/help/detail?helptype=code
-  scriptUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
+  /**
+   * 资源管理 - 我的项目
+   * 修改名称
+   * symbol 下查看新名称
+   * 1. 离线 - 下载本地 - 引入 iconfont.js 文件
+   * 2. 使用在线链接
+   */
+  scriptUrl: iconFont,
 })
 
 import { useGlobalStore } from '@/stores/global'
@@ -29,7 +36,6 @@ defineProps<{ msg: string }>()
 
 const countNum = ref(0)
 console.log(countNum)
-
 </script>
 
 <template>
@@ -41,7 +47,7 @@ console.log(countNum)
     <Popconfirm title="Are you sure delete this task?">
       <Button type="dashed" :icon="h(SettingFilled)">Confirm</Button>
     </Popconfirm>
-    <IconFont type="icon-twitter" class="red" />
+    <IconFont type="icon-log" class="red" />
   </Space>
 
   <div class="custom-card">

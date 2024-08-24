@@ -5,9 +5,13 @@ import {
 } from "vue-router";
 import { base } from "@/settings";
 
+import { menus } from "./modules/menus";
+
 const router = createRouter({
   history: createWebHistory(base),
-  routes: [],
+  routes: [
+    ...menus
+  ],
   scrollBehavior(to: RouteLocationNormalizedGeneric, from: RouteLocationNormalizedGeneric, savedPosition) {
     if (savedPosition) {
       return savedPosition;

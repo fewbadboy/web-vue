@@ -3,10 +3,11 @@ import vue from '@vitejs/plugin-vue'
 import { resolve } from 'node:path'
 import Components from 'unplugin-vue-components/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+import { base } from "./src/settings";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/web/',
+  base,
   resolve: {
     alias: [
       { find: '@', replacement: resolve(__dirname, 'src') }
@@ -18,6 +19,17 @@ export default defineConfig({
   assetsInclude: [
     '**/*.gltf'
   ],
+  build: {
+    rollupOptions: {
+      // https://rollupjs.org/guide/en/#outputmanualchunks
+      output: {
+        manualChunks: {
+          // todo 手动分块
+          // https://router.vuejs.org/zh/guide/advanced/lazy-loading.html#%E4%BD%BF%E7%94%A8-Vite
+        }
+      }
+    }
+  },
   server: {
     // host: ''
     proxy: {
