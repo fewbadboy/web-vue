@@ -42,6 +42,7 @@ console.log(countNum)
   
   <Space class="bg-slate-300">
     Space
+    <RouterLink :to="{ path: '/car' }">Car</RouterLink>
     <Button type="primary" loading>测试按钮</Button>
     <Button danger ghost :icon="h(SettingOutlined)">Danger</Button>
     <Popconfirm title="Are you sure delete this task?">

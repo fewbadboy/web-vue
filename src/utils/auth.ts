@@ -11,7 +11,7 @@ export function setToken(token: string) {
    * 1 / 48: 30 minutes
    */
   return Cookies.set(TokenKey, token, {
-    expires: 1 / 48
+    expires: 1 / (48 * 10)
   })
 }
 

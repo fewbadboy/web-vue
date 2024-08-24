@@ -5,11 +5,13 @@ import {
 } from "vue-router";
 import { base } from "@/settings";
 
+import { whiteList } from "./modules/white-list";
 import { menus } from "./modules/menus";
 
 const router = createRouter({
   history: createWebHistory(base),
   routes: [
+    ...whiteList,
     ...menus
   ],
   scrollBehavior(to: RouteLocationNormalizedGeneric, from: RouteLocationNormalizedGeneric, savedPosition) {
