@@ -12,6 +12,10 @@ import {
   createFromIconfontCN
 } from '@ant-design/icons-vue';
 
+import { compact } from 'lodash/fp'
+
+console.log(compact([0, 1, 3 ,2]));
+
 import iconFont from './iconfont?raw'
 
 const IconFont = createFromIconfontCN({
