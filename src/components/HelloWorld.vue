@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { h, ref } from 'vue'
+import type { Ref } from 'vue'
+import { h, onBeforeMount, onMounted, ref, useAttrs, useSlots, watchEffect } from 'vue'
 import { storeToRefs } from 'pinia'
 import {
   Space,
@@ -12,7 +13,7 @@ import {
   createFromIconfontCN
 } from '@ant-design/icons-vue';
 
-import { compact } from 'lodash/fp'
+import { compact, values } from 'lodash/fp'
 
 console.log(compact([0, 1, 3 ,2]));
 
@@ -35,11 +36,65 @@ const globalStore = useGlobalStore()
 const { count, doubleCount } = storeToRefs(globalStore)
 const {increment } = globalStore
 
+export type Status = 'success' | 'warning' | 'danger'
 
-defineProps<{ msg: string }>()
+export interface Props {
+  msg?: string,
+  type?: Status
+}
 
-const countNum = ref(0)
+const attrs = useAttrs()
+const slots = useSlots()
+
+defineOptions({
+  inheritAttrs: false
+})
+
+const dSlots = defineSlots<{
+  default(props: { msg: string }): any
+}>()
+
+// readonly
+const props = withDefaults(defineProps<Props>(), {
+  msg: 'hello',
+  type: 'success'
+})
+
+const emit = defineEmits<{
+  change: [id: number]
+}>()
+
+const divElement: Ref<HTMLElement | null> = ref(null)
+
+// data to be loaded asynchronously
+const countNum = ref(null)
 console.log(countNum)
+
+const vMyDirector = {
+  onBeforeMount: (el: HTMLElement) => {
+    // todo
+  }
+}
+
+onMounted(() => {
+  if (divElement.value) {
+    divElement.value.style.backgroundColor = 'lightblue'
+  }
+})
+
+watchEffect(() => {
+  if (countNum.value) {
+    // todo: do something when data is loaded
+  }
+})
+
+function handleDelete() {
+  // todo
+}
+
+defineExpose({
+  handleDelete
+})
 </script>
 
 <template>
@@ -55,12 +110,13 @@ console.log(countNum)
     <IconFont type="icon-log" class="red" />
   </Space>
 
-  <div class="custom-card">
+  <div :ref="(el) => divElement = el as HTMLElement" class="custom-card" v-bind="attrs">
     Tailwind css 自定义组件样式
   </div>
   <h1>{{ msg }}</h1>
   <Button type="primary" @click="increment">+1</Button>
   {{ count }} {{ doubleCount }}
+  <slot :msg="props.msg" />
 </template>
 
 <style scoped lang="scss">
