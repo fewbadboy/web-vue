@@ -1,11 +1,6 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div>
-    Layout
-  </div>
   <RouterView v-slot="{ Component, route }">
     <Transition :name="route.meta.transition || 'fade'" :key="route.path">
       <component :is="Component" />
@@ -13,6 +8,4 @@
   </RouterView>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

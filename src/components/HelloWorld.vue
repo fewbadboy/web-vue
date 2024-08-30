@@ -1,23 +1,27 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
-import { h, onBeforeMount, onMounted, ref, useAttrs, useSlots, watchEffect } from 'vue'
-import { storeToRefs } from 'pinia'
+import type { Ref } from "vue";
 import {
-  Space,
-  Button,
-  Popconfirm
-} from 'ant-design-vue'
+  h,
+  onBeforeMount,
+  onMounted,
+  ref,
+  useAttrs,
+  useSlots,
+  watchEffect,
+} from "vue";
+import { storeToRefs } from "pinia";
+import { Space, Button, Popconfirm } from "ant-design-vue";
 import {
   SettingOutlined,
   SettingFilled,
-  createFromIconfontCN
-} from '@ant-design/icons-vue';
+  createFromIconfontCN,
+} from "@ant-design/icons-vue";
 
-import { compact, values } from 'lodash/fp'
+import { compact, values } from "lodash/fp";
 
-console.log(compact([0, 1, 3 ,2]));
+console.log(compact([0, 1, 3, 2]));
 
-import iconFont from './iconfont?raw'
+import iconFont from "./iconfont?raw";
 
 const IconFont = createFromIconfontCN({
   /**
@@ -28,78 +32,79 @@ const IconFont = createFromIconfontCN({
    * 2. 使用在线链接
    */
   scriptUrl: iconFont,
-})
+});
 
-import { useGlobalStore } from '@/stores/global'
+import { useGlobalStore } from "@/stores/global";
 
-const globalStore = useGlobalStore()
-const { count, doubleCount } = storeToRefs(globalStore)
-const {increment } = globalStore
+const globalStore = useGlobalStore();
+const { count, doubleCount } = storeToRefs(globalStore);
+const { increment } = globalStore;
 
-export type Status = 'success' | 'warning' | 'danger'
+export type Status = "success" | "warning" | "danger";
 
 export interface Props {
-  msg?: string,
-  type?: Status
+  msg?: string;
+  type?: Status;
 }
 
-const attrs = useAttrs()
-const slots = useSlots()
+const attrs = useAttrs();
+const slots = useSlots();
 
 defineOptions({
-  inheritAttrs: false
-})
+  inheritAttrs: false,
+});
 
 const dSlots = defineSlots<{
-  default(props: { msg: string }): any
-}>()
+  default(props: { msg: string }): any;
+}>();
 
 // readonly
 const props = withDefaults(defineProps<Props>(), {
-  msg: 'hello',
-  type: 'success'
-})
+  msg: "hello",
+  type: "success",
+});
 
 const emit = defineEmits<{
-  change: [id: number]
-}>()
+  change: [id: number];
+}>();
 
-const divElement: Ref<HTMLElement | null> = ref(null)
+const divElement: Ref<HTMLElement | null> = ref(null);
 
 // data to be loaded asynchronously
-const countNum = ref(null)
-console.log(countNum)
+const countNum = ref(null);
+console.log(countNum);
 
 const vMyDirector = {
   onBeforeMount: (el: HTMLElement) => {
     // todo
-  }
-}
+  },
+};
+
+const open = ref(false);
 
 onMounted(() => {
   if (divElement.value) {
-    divElement.value.style.backgroundColor = 'lightblue'
+    divElement.value.style.backgroundColor = "lightblue";
   }
-})
+});
 
 watchEffect(() => {
   if (countNum.value) {
     // todo: do something when data is loaded
   }
-})
+});
 
 function handleDelete() {
   // todo
 }
 
 defineExpose({
-  handleDelete
-})
+  handleDelete,
+});
 </script>
 
 <template>
-  
-  <Space class="bg-slate-300">
+  <Space class="bg-slate-30 py-1 text-black hover:bg-sky-800 px-4">
     Space
     <RouterLink :to="{ path: '/car' }">Car</RouterLink>
     <Button type="primary" loading>测试按钮</Button>
@@ -108,15 +113,26 @@ defineExpose({
       <Button type="dashed" :icon="h(SettingFilled)">Confirm</Button>
     </Popconfirm>
     <IconFont type="icon-log" class="red" />
+    <Button type="primary" @click="open = true">Teleport</Button>
   </Space>
 
-  <div :ref="(el) => divElement = el as HTMLElement" class="custom-card" v-bind="attrs">
+  <div
+    :ref="(el) => (divElement = el as HTMLElement)"
+    class="custom-card"
+    v-bind="attrs"
+  >
     Tailwind css 自定义组件样式
   </div>
   <h1>{{ msg }}</h1>
   <Button type="primary" @click="increment">+1</Button>
   {{ count }} {{ doubleCount }}
   <slot :msg="props.msg" />
+  <Teleport to="body">
+    <div v-if="open" class="fixed left-1/2 top-1/2 translate-x-[-1/2]">
+      <p>Hello from the modal!</p>
+      <Button @click="open = false">Close</Button>
+    </div>
+  </Teleport>
 </template>
 
 <style scoped lang="scss">

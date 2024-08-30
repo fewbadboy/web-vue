@@ -30,3 +30,45 @@
 .slide-left-to {
   transform: translateX(100%);
 }
+
+/* bounce animation */
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/*
+ * Nested Transition
+ *  https://vuejs.org/guide/built-ins/transition.html#nested-transitions-and-explicit-transition-durations
+*/
+
+/* list animation */
+.list-move,
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.list-leave-active {
+  position: absolute;
+}

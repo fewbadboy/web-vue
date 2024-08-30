@@ -1,20 +1,15 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { useRouter } from 'vue-router';
-import { setToken } from '@/utils/auth';
-import {
-  Space,
-  Button,
-  Select,
-  SelectOption
-} from 'ant-design-vue'
+import { useI18n } from "vue-i18n";
+import { useRouter } from "vue-router";
+import { setToken } from "@/utils/auth";
+import { Space, Button, Select, SelectOption } from "ant-design-vue";
 
-const router = useRouter()
-const { locale } = useI18n()
+const router = useRouter();
+const { locale } = useI18n();
 
 function signIn() {
-  setToken('admin')
-  router.push({ path: '/' })
+  setToken("admin");
+  router.push({ path: "/" });
 }
 </script>
 
@@ -28,6 +23,4 @@ function signIn() {
   </Space>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>
