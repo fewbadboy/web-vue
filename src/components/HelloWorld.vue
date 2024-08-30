@@ -104,7 +104,7 @@ defineExpose({
 </script>
 
 <template>
-  <Space class="bg-slate-30 py-1 text-black hover:bg-sky-800 px-4">
+  <Space class="bg-slate-30 px-4 py-1 text-black hover:bg-sky-800">
     Space
     <RouterLink :to="{ path: '/car' }">Car</RouterLink>
     <Button type="primary" loading>测试按钮</Button>
