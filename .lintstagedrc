@@ -1,0 +1,9 @@
+# .lintstagedrc
+{
+  '*.{js, jsx, ts, tsx}': [
+    'eslint --fix'
+  ],
+  '*.vue': [
+    'prettier --write'
+  ]
+}
