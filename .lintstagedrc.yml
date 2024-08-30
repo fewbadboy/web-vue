@@ -1,10 +1,9 @@
 # .lintstagedrc.yml
 
 # Apply ESLint to JavaScript/TypeScript files
-'.{js, jsx, ts, tsx, vue}':
-  - prettier --write
+'*.{js, jsx, ts, tsx}':
   - eslint --fix
 
 # Apply vue auto sort Tailwind CSS class
-'.{vue}':
+'*.{vue}':
   - prettier --write
