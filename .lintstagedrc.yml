@@ -5,5 +5,5 @@
   - eslint --fix
 
 # Apply vue auto sort Tailwind CSS class
-'*.{vue}':
+'*.vue':
   - prettier --write
