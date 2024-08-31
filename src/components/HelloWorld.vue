@@ -1,16 +1,8 @@
 <script setup lang="ts">
 import type { Ref } from "vue";
-import {
-  h,
-  onBeforeMount,
-  onMounted,
-  ref,
-  useAttrs,
-  useSlots,
-  watchEffect,
-} from "vue";
+import { h, onMounted, ref, useAttrs, useSlots, watchEffect } from "vue";
 import { storeToRefs } from "pinia";
-import { Space, Button, Popconfirm } from "ant-design-vue";
+import { Space, Button, Input, Popconfirm } from "ant-design-vue";
 import {
   SettingOutlined,
   SettingFilled,
@@ -114,6 +106,13 @@ defineExpose({
     </Popconfirm>
     <IconFont type="icon-log" class="red" />
     <Button type="primary" @click="open = true">Teleport</Button>
+    <Input
+      type="number"
+      class="name w-[160px]"
+      :min="1"
+      :max="10"
+      placeholder=""
+    />
   </Space>
 
   <div
@@ -125,11 +124,17 @@ defineExpose({
   </div>
   <h1>{{ msg }}</h1>
   <Button type="primary" @click="increment">+1</Button>
-  {{ count }} {{ doubleCount }}
+  <div class="test">
+    {{ count }} {{ doubleCount }}
+    小伙子这是要早餐啊
+  </div>
   <slot :msg="props.msg" />
   <Teleport to="body">
-    <div v-if="open" class="fixed left-1/2 top-1/2 translate-x-[-1/2]">
+    <div v-if="open" class="teleport">
       <p>Hello from the modal!</p>
+      <ul class="list-disc marker:text-sky-400">
+        <li>武林风</li>
+      </ul>
       <Button @click="open = false">Close</Button>
     </div>
   </Teleport>
@@ -138,5 +143,17 @@ defineExpose({
 <style scoped lang="scss">
 :deep(.red) {
   @apply text-red-600;
+}
+
+.name {
+  @apply caret-blue-500 placeholder:text-orange-500 in-range:text-green-500 out-of-range:text-red-500;
+}
+
+.test {
+  @apply bg-red-200 selection:text-green-500 dark:bg-red-800 dark:selection:text-orange-500;
+}
+
+.teleport {
+  @apply fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-teal-500 px-6;
 }
 </style>
