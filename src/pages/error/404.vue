@@ -3,14 +3,15 @@ import { useRouter } from "vue-router";
 import { Button } from "ant-design-vue";
 
 const router = useRouter();
-function goHome() {
-  router.push({ path: "/" });
+function goSignIn() {
+  router.push({ path: "/sign-in" });
 }
 </script>
 
 <template>
   <div>
-    <Button type="primary" @click="goHome">Home</Button>
+    404 Error
+    <Button type="primary" @click="goSignIn">Goto Sign In</Button>
   </div>
 </template>
 

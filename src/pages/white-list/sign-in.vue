@@ -9,7 +9,7 @@ const { locale } = useI18n();
 
 function signIn() {
   setToken("admin");
-  router.push({ path: "/" });
+  router.push({ path: "/dashboard" });
 }
 </script>
 

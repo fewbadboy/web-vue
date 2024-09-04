@@ -1,4 +1,5 @@
 import Cookies from "js-cookie";
+import { base } from "@/settings";
 
 const TokenKey = "User-Token";
 
@@ -11,6 +12,7 @@ export function setToken(token: string) {
    * 1 / 48: 30 minutes
    */
   return Cookies.set(TokenKey, token, {
+    path: base,
     expires: 1 / (48 * 10)
   })
 }

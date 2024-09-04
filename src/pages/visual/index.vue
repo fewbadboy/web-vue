@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    Car
+    Visualization
     <RouterView />
   </div>
 </template>

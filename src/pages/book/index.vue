@@ -2,6 +2,7 @@
 
 <template>
   <div>
+    Book
     <RouterView />
   </div>
 </template>

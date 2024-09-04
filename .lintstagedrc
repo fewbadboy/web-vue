@@ -1,6 +1,6 @@
 # .lintstagedrc
 {
-  '*.{js, jsx, ts, tsx}': [
+  '*.{js, jsx, ts, tsx, !src/utils/*.js}': [
     'eslint --fix'
   ],
   '*.vue': [

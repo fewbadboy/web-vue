@@ -1,20 +1,25 @@
 import {
   createRouter,
   createWebHistory,
-  RouteLocationNormalizedGeneric,
+  RouteLocationNormalized,
+  RouteLocationNormalizedLoaded,
 } from "vue-router";
 import { base } from "@/settings";
 
 import { whiteList } from "./modules/white-list";
-import { menus } from "./modules/menus";
+import { syncRoutes } from "./modules/sync-routers";
 
 const router = createRouter({
   history: createWebHistory(base),
   routes: [
     ...whiteList,
-    ...menus
+    ...syncRoutes,
+    {
+      path: "/:pathMatch(.*)*",
+      redirect: "/404"
+    },
   ],
-  scrollBehavior(to: RouteLocationNormalizedGeneric, from: RouteLocationNormalizedGeneric, savedPosition) {
+  scrollBehavior(to: RouteLocationNormalized, from: RouteLocationNormalizedLoaded, savedPosition) {
     if (savedPosition) {
       return savedPosition;
     } else {

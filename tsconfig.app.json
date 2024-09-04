@@ -28,6 +28,8 @@
   },
   "include": [
     "src/**/*.ts",
+    // types.d.ts 自动识别，其他类型定义的需要配置
+    "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
   ]

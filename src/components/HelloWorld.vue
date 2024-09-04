@@ -9,11 +9,11 @@ import {
   createFromIconfontCN,
 } from "@ant-design/icons-vue";
 
-import { compact, values } from "lodash/fp";
+import { compact } from "lodash/fp";
 
 console.log(compact([0, 1, 3, 2]));
 
-import iconFont from "./iconfont?raw";
+import iconFont from "@/utils/iconfont?url";
 
 const IconFont = createFromIconfontCN({
   /**
@@ -22,11 +22,14 @@ const IconFont = createFromIconfontCN({
    * symbol 下查看新名称
    * 1. 离线 - 下载本地 - 引入 iconfont.js 文件
    * 2. 使用在线链接
+   * h(IconFont, { type: 'icon-log' })
    */
   scriptUrl: iconFont,
 });
 
 import { useGlobalStore } from "@/stores/global";
+
+import { getMock } from "@/api/mock";
 
 const globalStore = useGlobalStore();
 const { count, doubleCount } = storeToRefs(globalStore);
@@ -52,7 +55,7 @@ const dSlots = defineSlots<{
 
 // readonly
 const props = withDefaults(defineProps<Props>(), {
-  msg: "hello",
+  msg: () => "hello",
   type: "success",
 });
 
@@ -75,6 +78,11 @@ const vMyDirector = {
 const open = ref(false);
 
 onMounted(() => {
+  // getMock({ id: 1 }).then(({ data }) => {
+  //   console.log(data)
+  // }).catch(({ message }) => {
+  //   console.log(message)
+  // })
   if (divElement.value) {
     divElement.value.style.backgroundColor = "lightblue";
   }
@@ -98,7 +106,7 @@ defineExpose({
 <template>
   <Space class="bg-slate-30 px-4 py-1 text-black hover:bg-sky-800">
     Space
-    <RouterLink :to="{ path: '/car' }">Car</RouterLink>
+    <RouterLink :to="{ path: '/object/car' }">Car</RouterLink>
     <Button type="primary" loading>测试按钮</Button>
     <Button danger ghost :icon="h(SettingOutlined)">Danger</Button>
     <Popconfirm title="Are you sure delete this task?">

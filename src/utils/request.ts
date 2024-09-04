@@ -1,9 +1,9 @@
-import axios, { InternalAxiosRequestConfig } from "axios";
-import { message } from "ant-design-vue";
+import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
+import { message as AntMessage } from "ant-design-vue";
 import { getToken } from "./auth";
 
 const server = axios.create({
-  baseURL: import.meta.env.VITE_ORIGIN_URL,
+  baseURL: import.meta.env.VITE_BASE_URL,
   withCredentials: true,
   timeout: 6 * 1000,
 });
@@ -59,7 +59,7 @@ server.interceptors.response.use(
     const { data } = response;
     if (data.code !== 200) {
       const msg = data?.message;
-      message.error(msg, 4000);
+      AntMessage.error(msg, 4000);
 
       if (data.code === 50010) {
         // todo: 自定义状态码处理
@@ -70,16 +70,14 @@ server.interceptors.response.use(
       return data;
     }
   },
-  (error) => {
+  (error: AxiosError) => {
     const {
-      response: {
-        data: { message: msg },
-      },
-      status,
+      message,
+      response
     } = error;
-    message.error(msg, 4000);
+    AntMessage.error(message, 4);
 
-    if (status === 401) {
+    if (response?.status === 401) {
       // todo: resetToken
     }
 

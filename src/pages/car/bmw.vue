@@ -1,10 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>
-    Car
-    <RouterView />
-  </div>
+  <div>BMW</div>
 </template>
 
 <style scoped lang="scss"></style>

@@ -1,20 +1,44 @@
-import { NavigationGuardReturn, RouteLocationNormalizedGeneric } from "vue-router";
+import { NavigationGuardReturn, RouteLocationNormalized } from "vue-router";
 import router from "./router";
+import { whiteList } from "./router/modules/white-list";
 import { getToken } from "./utils/auth";
+import { usePermissionStore } from "./stores/permission";
+import { storeToRefs } from "pinia";
 
-const whileList = ["/sign-in", "/sign-up"];
+const whiteListRoutes: string[] = []
+whiteList.forEach(({ path }) => whiteListRoutes.push(path))
  
-async function canAccessPage(to: RouteLocationNormalizedGeneric): Promise<NavigationGuardReturn> {
+async function canAccessPage(to: RouteLocationNormalized): Promise<NavigationGuardReturn> {
   const token =  getToken()
+  const permission = usePermissionStore()
+  const { accessMenus, accessRoutes } = storeToRefs(permission)
+  const { generateRoutesAndMenus } = permission
+
   return new Promise((resolve, reject) => {
     if (token) {
-      if (whileList.includes(to.path)) {
-        resolve({ path: "/" });
+      if (whiteListRoutes.includes(to.path)) {
+        resolve({ path: "/dashboard" });
       } else {
+        generateRoutesAndMenus([
+          { name: 'dashboard' },
+          { name: 'book' },
+          { name: 'vue' },
+          { name: 'javascript' },
+          { name: 'car' },
+          { name: 'audi' },
+          { name: 'bmw' },
+          { name: 'visual' },
+          { name: 'echarts' },
+          { name: 'timeline' },
+        ])
+        console.log(accessMenus.value, accessRoutes.value)
+        accessRoutes.value.forEach((route) => {
+          router.addRoute(route)
+        })
         resolve(true)
       }
     } else {
-      if (!whileList.includes(to.path)) {
+      if (!whiteListRoutes.includes(to.path)) {
         resolve({ path: "/sign-in" });
       } else {
         resolve(true)
@@ -23,7 +47,7 @@ async function canAccessPage(to: RouteLocationNormalizedGeneric): Promise<Naviga
   })
 }
 
-router.beforeEach(async(to: RouteLocationNormalizedGeneric) => {
+router.beforeEach(async(to: RouteLocationNormalized) => {
   return await canAccessPage(to)
 })
 

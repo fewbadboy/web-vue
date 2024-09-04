@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { useI18n } from "vue-i18n";
+import { useRouter } from "vue-router";
 import HelloWorld from "@/components/HelloWorld.vue";
 
 const { t, d, n } = useI18n();
+
+const router = useRouter();
+console.log(router.getRoutes());
+
 // mile-per-hour
 </script>
 

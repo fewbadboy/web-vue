@@ -33,10 +33,10 @@ export default defineConfig({
   server: {
     // host: ''
     proxy: {
-      '/api': {
+      '/dev': {
         target: 'http://172.0.0.2:8090',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
+        rewrite: (path) => path.replace(/^\/dev/, '')
       },
       '/socket.io': {
         target: 'ws://localhost:8088',
