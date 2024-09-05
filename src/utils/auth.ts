@@ -18,5 +18,8 @@ export function setToken(token: string) {
 }
 
 export function removeToken() {
-  Cookies.remove(TokenKey)
+  Cookies.remove(TokenKey, {
+    path: base,
+    expires: 1 / (48 * 10)
+  })
 }

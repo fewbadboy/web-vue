@@ -13,29 +13,35 @@ async function canAccessPage(to: RouteLocationNormalized): Promise<NavigationGua
   const permission = usePermissionStore()
   const { accessMenus, accessRoutes } = storeToRefs(permission)
   const { generateRoutesAndMenus } = permission
-
+  console.log(to.path)
   return new Promise((resolve, reject) => {
     if (token) {
       if (whiteListRoutes.includes(to.path)) {
         resolve({ path: "/dashboard" });
       } else {
-        generateRoutesAndMenus([
-          { name: 'dashboard' },
-          { name: 'book' },
-          { name: 'vue' },
-          { name: 'javascript' },
-          { name: 'car' },
-          { name: 'audi' },
-          { name: 'bmw' },
-          { name: 'visual' },
-          { name: 'echarts' },
-          { name: 'timeline' },
-        ])
-        console.log(accessMenus.value, accessRoutes.value)
-        accessRoutes.value.forEach((route) => {
-          router.addRoute(route)
-        })
-        resolve(true)
+        const hasMenu = accessMenus.value?.length ?? false
+        if (hasMenu) {
+          resolve(true);
+        } else {
+          // todo: getMenus
+          generateRoutesAndMenus([
+            { name: 'dashboard' },
+            { name: 'book' },
+            { name: 'vue' },
+            { name: 'javascript' },
+            { name: 'car' },
+            { name: 'audi' },
+            // { name: 'bmw' },
+            { name: 'visual' },
+            { name: 'echarts' },
+            { name: 'timeline' },
+          ])
+          console.log(accessMenus.value, accessRoutes.value)
+          accessRoutes.value.forEach((route) => {
+            router.addRoute(route)
+          })
+          resolve(true)
+        }
       }
     } else {
       if (!whiteListRoutes.includes(to.path)) {

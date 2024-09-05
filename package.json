@@ -28,6 +28,7 @@
     "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@eslint/js": "^9.9.0",
+    "@faker-js/faker": "^9.0.0",
     "@types/js-cookie": "^3.0.6",
     "@types/lodash": "^4.17.7",
     "@vitejs/plugin-vue": "^5.1.2",

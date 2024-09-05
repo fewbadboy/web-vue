@@ -13,7 +13,22 @@ export const syncRoutes = [
       {
         path: '',
         name: 'dashboard-hidden',
-        component: () => import('@/pages/index.vue')
+        component: () => import('@/pages/dashboard/index.vue')
+      },
+    ]
+  },
+  {
+    path: '/error',
+    component: Layout,
+    name: 'error',
+    meta: {
+      icon: 'linechart'
+    },
+    children: [
+      {
+        path: '404',
+        name: '404',
+        component: () => import('@/pages/error/404.vue')
       },
     ]
   },

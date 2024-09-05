@@ -35,11 +35,11 @@ export const asyncRoutes = [
         name: 'audi',
         component: () => import('@/pages/car/audi.vue')
       },
-      // {
-      //   path: 'bmw',
-      //   name: 'bmw',
-      //   component: () => import('@/pages/car/bmw.vue')
-      // }
+      {
+        path: 'bmw',
+        name: 'bmw',
+        component: () => import('@/pages/car/bmw.vue')
+      }
     ]
   },
   {

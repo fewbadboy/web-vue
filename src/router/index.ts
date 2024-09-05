@@ -16,7 +16,8 @@ const router = createRouter({
     ...syncRoutes,
     {
       path: "/:pathMatch(.*)*",
-      redirect: "/404"
+      name: 'not-found',
+      redirect: "/error/404"
     },
   ],
   scrollBehavior(to: RouteLocationNormalized, from: RouteLocationNormalizedLoaded, savedPosition) {

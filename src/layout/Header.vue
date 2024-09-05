@@ -3,6 +3,10 @@ import { h, ref } from "vue";
 import { Avatar, Dropdown, Flex, Menu, MenuProps } from "ant-design-vue";
 import { UserOutlined } from "@ant-design/icons-vue";
 import { MenuInfo } from "ant-design-vue/es/menu/src/interface";
+import { removeToken } from "@/utils/auth";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const items = ref<MenuProps["items"]>([
   {
@@ -23,7 +27,15 @@ const items = ref<MenuProps["items"]>([
 ]);
 
 function handleOperate({ key }: MenuInfo) {
-  console.log(key);
+  switch (key) {
+    case "detail":
+      // todo
+      break;
+    case "out":
+      removeToken();
+      router.push({ path: "/sign-in" });
+      break;
+  }
 }
 </script>
 

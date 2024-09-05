@@ -106,7 +106,7 @@ defineExpose({
 <template>
   <Space class="bg-slate-30 px-4 py-1 text-black hover:bg-sky-800">
     Space
-    <RouterLink :to="{ path: '/object/car' }">Car</RouterLink>
+    <RouterLink :to="{ path: '/car/bmw' }">Car BMW</RouterLink>
     <Button type="primary" loading>测试按钮</Button>
     <Button danger ghost :icon="h(SettingOutlined)">Danger</Button>
     <Popconfirm title="Are you sure delete this task?">

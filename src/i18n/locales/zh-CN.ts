@@ -7,6 +7,12 @@ const zhMessage = {
   },
   message: {
     welcome: 'welcome, {userName}'
+  },
+  error: {
+    e404: {
+      title: '对不起，您访问的界面不存在。',
+      back: '返回主页'
+    }
   }
 }
 

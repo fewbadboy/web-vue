@@ -6,10 +6,5 @@ export const whiteList = [
   {
     path: '/sign-up',
     component: () => import('@/pages/white-list/sign-up.vue')
-  },
-  {
-    path: '/404',
-    component: () => import('@/pages/error/404.vue')
-  },
-
+  }
 ]
