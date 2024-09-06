@@ -1,9 +1,9 @@
-declare interface postData {
+declare interface PostData {
   name: string
   age?: number
 }
 
-declare interface getData {
+declare interface GetData {
   id: number
 }
 

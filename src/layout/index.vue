@@ -142,6 +142,7 @@ function handleClick({ keyPath }: MenuInfo) {
   @apply bg-white dark:bg-black;
 }
 .content {
-  min-width: calc(100% - 64px);
+  height: calc(100% - 64px);
+  @apply overflow-auto;
 }
 </style>

@@ -34,14 +34,16 @@ const lineChart = shallowRef<ECharts.EChartsType | null>(null);
 
 watchEffect(() => {
   initChart();
-  console.log(props.chartData);
   setOption(props.chartData!);
 });
 
 function initChart() {
   if (lineRef.value) {
+    /**
+     * opt set height: '100%' will show 100px
+     * @see https://github.com/apache/echarts/issues/20323
+     */
     lineChart.value = ECharts.init(lineRef.value, "dark", {
-      // bug see https://github.com/apache/echarts/issues/20323
       // height: '100%'
     });
   }

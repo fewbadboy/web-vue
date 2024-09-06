@@ -13,7 +13,7 @@ async function canAccessPage(to: RouteLocationNormalized): Promise<NavigationGua
   const permission = usePermissionStore()
   const { accessMenus, accessRoutes } = storeToRefs(permission)
   const { generateRoutesAndMenus } = permission
-  console.log(to.path)
+  
   return new Promise((resolve, reject) => {
     if (token) {
       if (whiteListRoutes.includes(to.path)) {

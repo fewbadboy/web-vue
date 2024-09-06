@@ -25,8 +25,7 @@ console.log(userList);
 }
 
 .dashboard {
-  height: calc(100vh - 64px);
-  @apply grid grid-cols-3 grid-rows-3 gap-5 p-4;
+  @apply grid h-full grid-cols-3 grid-rows-3 gap-5 p-4;
   grid-template-areas:
     "a d f"
     "b d g"

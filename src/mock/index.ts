@@ -4,10 +4,12 @@ export function fakerUser() {
   return {
     uuid: faker.string.uuid(),
     name: faker.person.fullName(),
-    sex: faker.person.sexType(),
+    age: faker.number.int({ min: 24, max: 60 }),
+    gender: faker.person.sexType(),
     birthday: faker.date.birthdate({ mode: 'age', min: 18, max: 65 }),
     phone: faker.phone.number({ style: 'international' }),
     email: faker.internet.email(),
+    address: faker.location.city(),
     avatar: faker.image.avatar(),
     color: faker.color.rgb({ casing: 'upper' }),
     cron: faker.system.cron(),
@@ -17,7 +19,7 @@ export function fakerUser() {
 }
 
 export const userList = faker.helpers.multiple(fakerUser, {
-  count: 12
+  count: 42
 })
 
 export default faker
