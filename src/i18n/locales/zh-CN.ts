@@ -1,4 +1,5 @@
 const zhMessage = {
+  signIn: '登录',
   dashboard: '主页',
   operate: {
     edit: '编辑',

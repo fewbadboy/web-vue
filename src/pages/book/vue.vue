@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import { computed, reactive, ref, UnwrapRef } from "vue";
 
-import { SmileOutlined, SearchOutlined } from "@ant-design/icons-vue";
+import {
+  SmileOutlined,
+  HomeOutlined,
+  TableOutlined,
+} from "@ant-design/icons-vue";
+
 import {
   Button,
+  Breadcrumb,
+  BreadcrumbItem,
   Input,
   Radio,
   RadioGroup,
@@ -24,11 +31,6 @@ const current = ref(1);
 const pageSize = ref(20);
 const total = ref(42);
 const editableData: UnwrapRef<Record<string, TableDataItem>> = reactive({});
-const searchInput = ref();
-const searchState = reactive({
-  searchText: "",
-  searchedColumn: "",
-});
 
 tableData.value = userList;
 
@@ -89,76 +91,87 @@ const handleCancel = (key: string) => {
 </script>
 
 <template>
-  <Table
-    bordered
-    :loading="loading"
-    :row-key="(record) => record.uuid"
-    :row-selection="rowSelection"
-    :columns="tableColumns"
-    :data-source="tableData"
-    :pagination="pagination"
-    :scroll="{ y: 400 }"
-    @change="handleTableChange"
-  >
-    <template #title>Header</template>
-    <template #footer>Footer</template>
-    <template #headerCell="{ column }">
-      <template v-if="column.key === 'name'">
-        <Space> <SmileOutlined />{{ column.title }} </Space>
+  <div>
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <HomeOutlined />
+      </BreadcrumbItem>
+      <BreadcrumbItem>
+        <TableOutlined />
+        <span>Vue</span>
+      </BreadcrumbItem>
+    </Breadcrumb>
+    <Table
+      bordered
+      :loading="loading"
+      :row-key="(record) => record.uuid"
+      :row-selection="rowSelection"
+      :columns="tableColumns"
+      :data-source="tableData"
+      :pagination="pagination"
+      :scroll="{ y: 400 }"
+      @change="handleTableChange"
+    >
+      <template #title>Header</template>
+      <template #footer>Footer</template>
+      <template #headerCell="{ column }">
+        <template v-if="column.key === 'name'">
+          <Space> <SmileOutlined />{{ column.title }} </Space>
+        </template>
       </template>
-    </template>
-    <template #bodyCell="{ column, text, record }">
-      <template
-        v-if="
-          column.dataIndex === 'name' ||
-          column.dataIndex === 'age' ||
-          column.dataIndex === 'address' ||
-          column.dataIndex === 'email'
-        "
-      >
-        <div>
-          <Input
+      <template #bodyCell="{ column, text, record }">
+        <template
+          v-if="
+            column.dataIndex === 'name' ||
+            column.dataIndex === 'age' ||
+            column.dataIndex === 'address' ||
+            column.dataIndex === 'email'
+          "
+        >
+          <div>
+            <Input
+              v-if="editableData[record.uuid]"
+              v-model:value="editableData[record.uuid][column.dataIndex]"
+            />
+            <span v-else>{{ text }}</span>
+          </div>
+        </template>
+        <template v-if="column.dataIndex === 'gender'">
+          <RadioGroup
             v-if="editableData[record.uuid]"
             v-model:value="editableData[record.uuid][column.dataIndex]"
-          />
-          <span v-else>{{ text }}</span>
-        </div>
-      </template>
-      <template v-if="column.dataIndex === 'gender'">
-        <RadioGroup
-          v-if="editableData[record.uuid]"
-          v-model:value="editableData[record.uuid][column.dataIndex]"
-        >
-          <Radio
-            v-for="item in column.filters"
-            :key="item.value as string"
-            :value="item.value"
           >
-            {{ item.text }}
-          </Radio>
-        </RadioGroup>
-        <span v-else>{{ text }}</span>
-      </template>
-      <template v-if="column.key === 'action'">
-        <div>
-          <Space v-if="editableData[record.uuid]">
-            <TypographyLink @click="handleSava(record.uuid)"
-              >Save</TypographyLink
+            <Radio
+              v-for="item in column.filters"
+              :key="item.value as string"
+              :value="item.value"
             >
-            <Popconfirm
-              title="Sure to cancel?"
-              @confirm="handleCancel(record.uuid)"
-            >
-              <TypographyLink>Cancel</TypographyLink>
-            </Popconfirm>
-          </Space>
-          <Button v-else type="primary" @click="handleEdit(record.uuid)">
-            Edit
-          </Button>
-        </div>
+              {{ item.text }}
+            </Radio>
+          </RadioGroup>
+          <span v-else>{{ text }}</span>
+        </template>
+        <template v-if="column.key === 'action'">
+          <div>
+            <Space v-if="editableData[record.uuid]">
+              <TypographyLink @click="handleSava(record.uuid)"
+                >Save</TypographyLink
+              >
+              <Popconfirm
+                title="Sure to cancel?"
+                @confirm="handleCancel(record.uuid)"
+              >
+                <TypographyLink>Cancel</TypographyLink>
+              </Popconfirm>
+            </Space>
+            <Button v-else type="primary" @click="handleEdit(record.uuid)">
+              Edit
+            </Button>
+          </div>
+        </template>
       </template>
-    </template>
-  </Table>
+    </Table>
+  </div>
 </template>
 
 <style scoped lang="scss"></style>

@@ -4,6 +4,8 @@ import { createPinia } from 'pinia'
 import 'ant-design-vue/dist/reset.css'
 import './styles/main.css'
 
+import 'dayjs/locale/zh-cn';
+
 import i18n from './i18n'
 import "./permission";
 

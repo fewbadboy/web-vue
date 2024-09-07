@@ -7,7 +7,10 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ChangeLanguage: typeof import('./src/components/ChangeLanguage.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    LanguageIcon: typeof import('./src/components/LanguageIcon.vue')['default']
+    LanguageSelect: typeof import('./src/components/LanguageSelect.vue')['default']
     LineChart: typeof import('./src/components/echarts/LineChart.vue')['default']
     ListOrder: typeof import('./src/components/ListOrder.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

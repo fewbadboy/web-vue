@@ -1,7 +1,7 @@
+import { nextTick } from "vue";
 import { createI18n, DefineDateTimeFormat, DefineNumberFormat, type I18nOptions } from "vue-i18n";
 import enMessage from "./locales/en";
 import zhMessage from "./locales/zh-CN";
-import { nextTick } from "vue";
 
 const locale = navigator.language
 
@@ -91,11 +91,11 @@ const options: I18nOptions= {
 
 const i18n = createI18n<false, typeof options>(options)
 
-export function setI18NLanguage(i18n: any, locale: string) {
+export function setI18NLanguage(locale: string) {
   i18n.global.locale.value = locale
 }
 
-export async function loadLocaleMessage(i18n: any, locale: string) {
+export async function loadLocaleMessage(locale: string) {
   const messages = await import(
     `./locales/${locale}.ts`
   )

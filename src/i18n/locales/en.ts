@@ -1,4 +1,5 @@
 const enMessage = {
+  signIn: 'Sign In',
   dashboard: 'Dashboard',
   operate: {
     edit: 'Edit',

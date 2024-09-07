@@ -1,35 +1,22 @@
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
 import { setToken } from "@/utils/auth";
-import { Space, Button, Select, SelectOption } from "ant-design-vue";
-import { useGlobalStore } from "@/stores/global";
-import { storeToRefs } from "pinia";
-import { SelectValue } from "ant-design-vue/es/select";
-
-const global = useGlobalStore();
-const { language } = storeToRefs(global);
+import { Space, Button } from "ant-design-vue";
+import LanguageSelect from "@/components/LanguageSelect.vue";
 const router = useRouter();
-const { locale } = useI18n();
-language.value = locale.value;
+const { t } = useI18n();
 
 function signIn() {
   setToken("admin");
   router.push({ path: "/dashboard" });
 }
-
-function changeLanguage(value: SelectValue) {
-  language.value = value as string;
-}
 </script>
 
 <template>
   <Space>
-    <Select v-model:value="locale" @change="changeLanguage">
-      <SelectOption value="en">英文</SelectOption>
-      <SelectOption value="zh-CN">中文</SelectOption>
-    </Select>
-    <Button type="primary" @click="signIn">Sign In</Button>
+    <LanguageSelect />
+    <Button type="primary" @click="signIn">{{ t("signIn") }}</Button>
   </Space>
 </template>
 

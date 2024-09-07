@@ -1,9 +1,38 @@
 <script setup lang="ts">
-// import HelloWorld from './components/HelloWorld.vue'
+import enUS from "ant-design-vue/es/locale/en_US";
+import zhCN from "ant-design-vue/es/locale/zh_CN";
+import { ConfigProvider, FloatButton, FloatButtonGroup } from "ant-design-vue";
+import {
+  MoreOutlined,
+  MessageOutlined,
+  MailOutlined,
+} from "@ant-design/icons-vue";
+import { useGlobalStore } from "./stores/global";
+import { storeToRefs } from "pinia";
+
+const global = useGlobalStore();
+const { language } = storeToRefs(global);
 </script>
 
 <template>
-  <RouterView />
+  <ConfigProvider :locale="language === 'en' ? enUS : zhCN">
+    <RouterView />
+    <FloatButtonGroup trigger="hover" type="primary">
+      <template #icon>
+        <MoreOutlined />
+      </template>
+      <FloatButton tooltip="Message">
+        <template #icon>
+          <MessageOutlined />
+        </template>
+      </FloatButton>
+      <FloatButton tooltip="Mail">
+        <template #icon>
+          <MailOutlined />
+        </template>
+      </FloatButton>
+    </FloatButtonGroup>
+  </ConfigProvider>
 </template>
 
 <style scoped>
