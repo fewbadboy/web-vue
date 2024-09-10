@@ -35,6 +35,7 @@ async function canAccessPage(to: RouteLocationNormalized): Promise<NavigationGua
             { name: 'visual' },
             { name: 'echarts' },
             { name: 'timeline' },
+            { name: 'network' },
           ])
           console.log(accessMenus.value, accessRoutes.value)
           accessRoutes.value.forEach((route) => {

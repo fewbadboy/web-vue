@@ -9,8 +9,15 @@ import {
   LayoutContent,
   Menu,
   MenuProps,
+  FloatButton,
+  FloatButtonGroup,
 } from "ant-design-vue";
-import { UserOutlined } from "@ant-design/icons-vue";
+import {
+  UserOutlined,
+  MoreOutlined,
+  MessageOutlined,
+  MailOutlined,
+} from "@ant-design/icons-vue";
 import { MenuInfo } from "ant-design-vue/es/menu/src/interface";
 import Header from "./Header.vue";
 import { useRouter } from "vue-router";
@@ -135,6 +142,21 @@ function handleClick({ keyPath }: MenuInfo) {
       </LayoutContent>
     </Layout>
   </Layout>
+  <FloatButtonGroup trigger="hover" type="primary">
+    <template #icon>
+      <MoreOutlined />
+    </template>
+    <FloatButton tooltip="Message">
+      <template #icon>
+        <MessageOutlined />
+      </template>
+    </FloatButton>
+    <FloatButton tooltip="Mail">
+      <template #icon>
+        <MailOutlined />
+      </template>
+    </FloatButton>
+  </FloatButtonGroup>
 </template>
 
 <style scoped lang="scss">

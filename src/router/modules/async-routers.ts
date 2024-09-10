@@ -59,6 +59,11 @@ export const asyncRoutes = [
         path: 'timeline',
         name: 'timeline',
         component: () => import('@/pages/visual/vis-timeline.vue')
+      },
+      {
+        path: 'network',
+        name: 'network',
+        component: () => import('@/pages/visual/vis-network.vue')
       }
     ]
   }
