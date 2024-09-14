@@ -1,5 +1,7 @@
 /// <reference types="vite/client" />
 
+import * as L from 'leaflet'
+
 import 'vue-router'
 import { 
   DefineLocaleMessage,
@@ -67,4 +69,31 @@ declare module 'vue-i18n' {
     }
   }
 
+}
+
+
+declare module 'leaflet' {
+  namespace Control {
+    class WaterMark extends Control {
+      constructor(option?: ControlOptions)
+    }
+  }
+
+  namespace control {
+    function waterMark(option?: ControlOptions): Control.WaterMark
+  }
+
+  interface MapOptions {
+    rotate?: boolean
+    rotateControl: {
+      closeOnZeroBearing?: boolean
+      position?: string
+    }
+    bearing?: number
+    touchRotate?: boolean
+  }
+
+  interface MarkerOptions {
+    rotation?: number | string
+  }
 }

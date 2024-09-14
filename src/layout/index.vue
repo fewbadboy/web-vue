@@ -146,12 +146,12 @@ function handleClick({ keyPath }: MenuInfo) {
     <template #icon>
       <MoreOutlined />
     </template>
-    <FloatButton tooltip="Message">
+    <FloatButton :badge="{ count: 88, overflowCount: 99 }" tooltip="Message">
       <template #icon>
         <MessageOutlined />
       </template>
     </FloatButton>
-    <FloatButton tooltip="Mail">
+    <FloatButton :badge="{ count: 123, overflowCount: 99 }" tooltip="Mail">
       <template #icon>
         <MailOutlined />
       </template>

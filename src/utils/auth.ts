@@ -13,13 +13,13 @@ export function setToken(token: string) {
    */
   return Cookies.set(TokenKey, token, {
     path: base,
-    expires: 1 / (48 * 10)
+    expires: 1 / 48
   })
 }
 
 export function removeToken() {
   Cookies.remove(TokenKey, {
     path: base,
-    expires: 1 / (48 * 10)
+    expires: 1 / 48
   })
 }

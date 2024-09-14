@@ -28,6 +28,16 @@
    :deep(.red) {
       color: red;
    }
+
+   // slot content use
+   // :slotted(.child-class) {
+   //   @apply accent-lime-500;
+   // }
+
+   // :global(.child-class) {
+   //   @apply accent-lime-500;
+   // }
+</style>
 </style>
 ```
 

@@ -1,3 +1,25 @@
+declare module 'leaflet-ant-path' {
+  import { PolylineOptions, LatLngExpression } from 'leaflet'
+
+  export interface AntPathOptions extends PolylineOptions {
+    paused?: boolean
+    reverse?: boolean
+    hardwareAccelerated?: boolean
+    delay?: number
+    dashArray?: [number, number]
+    pulseColor?: string
+    pausedColor?: string
+    pulseColor?: string
+  }
+
+  export function antPath(
+    latLngs: LatLngExpression[] | LatLngExpression[][],
+    options?: AntPathOptions
+  ): L.Polyline
+}
+
+declare module 'leaflet-rotate'
+
 // request 
 
 type APIParams = {

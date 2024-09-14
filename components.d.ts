@@ -11,6 +11,7 @@ declare module 'vue' {
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     LanguageIcon: typeof import('./src/components/LanguageIcon.vue')['default']
     LanguageSelect: typeof import('./src/components/LanguageSelect.vue')['default']
+    Leaflet: typeof import('./src/components/leaflet/index.vue')['default']
     LineChart: typeof import('./src/components/echarts/LineChart.vue')['default']
     ListOrder: typeof import('./src/components/ListOrder.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

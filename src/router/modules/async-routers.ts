@@ -64,6 +64,11 @@ export const asyncRoutes = [
         path: 'network',
         name: 'network',
         component: () => import('@/pages/visual/vis-network.vue')
+      },
+      {
+        path: 'leaflet',
+        name: 'leaflet',
+        component: () => import('@/pages/visual/map.vue')
       }
     ]
   }
